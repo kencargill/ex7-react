@@ -1,0 +1,14 @@
+.menuItem {
+    display: 'flex';
+    flex-direction: column;
+    gap: 10;
+    justify-content: space-evenly;
+    border: lightgrey solid 2px;
+    width: 97%;
+    margin: 5px;
+    padding: 10px;
+}
+
+button {
+    margin-left: 20px;
+}
