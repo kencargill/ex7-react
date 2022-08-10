@@ -14,7 +14,10 @@ export function OrderContextProvider ({ children }: Props) {
     }
   
     function removeItem(id: string) {
-        setOrders(orders.filter(item => item.id !== id));
+        const index = orders.findIndex((item) => item.id === id);
+        let newArray = orders.slice(0)
+        newArray.splice(index, 1)
+        setOrders(newArray);
     }
   
     return (

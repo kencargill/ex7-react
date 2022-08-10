@@ -6,30 +6,25 @@ import '../css/menuItem.css'
 
 interface MenuItemProps {
     menuItem: Item;
-    onDelete?: (id: string) => void;
 }
 
 export default function MenuItem({ menuItem }: MenuItemProps) {
-    const { removeItem, addItem } = useContext(OrderContext);
+    const { removeItem, addItem, orders } = useContext(OrderContext);
 
-    function isVeg () {
-    if (menuItem.vegetarian) {
-        return '(V)'
-    } else {
-        return ''
-    }}
-
+    const hasOrderInCart = orders.includes(menuItem);
+    
   return (
     <div className="menuItem">
-        <h3>{menuItem.name}  {isVeg()} - {`$${menuItem.price}`}</h3>
+        <h3>{menuItem.name}  {menuItem.vegetarian ? <p>(V)</p> : <p></p>} - {`$${menuItem.price}`}</h3>
         <p>{menuItem.description}</p>
         <p>Calories: {menuItem.calories}</p>
 
         <button onClick={() => addItem(menuItem)}
         >add to order</button>
 
-        <button onClick={() => removeItem(menuItem.id)}
-        >remove from order</button>
+         <button onClick={() => removeItem(menuItem.id)}>
+                remove from order
+            </button>
     </div>
   )
 }
